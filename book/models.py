@@ -8,3 +8,9 @@ class book(models.Model):
     update_date = models.DateField(auto_now=True)
     author = models.CharField(max_length=48)
 
+
+class BookFeedBack(models.Model):
+    text = models.TextField()
+    created_date = models.DateField(auto_now_add=True)
+    comment = models.ForeignKey(book, on_delete=models.CASCADE,
+                                related_name="comment")
