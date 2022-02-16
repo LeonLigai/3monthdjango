@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from . import models
-from django.http import Http404
-from django.shortcuts import get_object_or_404
+from . import models, forms
+from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404, reverse, redirect
 
 def book_show_detail(request, id):
     try:
@@ -18,3 +18,15 @@ def book_show_detail(request, id):
 def book_all(request):
     book = models.book.objects.all()
     return render(request, "book_list.html", {"book" : book})
+
+def add_book(request):
+    method = request.method
+    if method == "POST":
+        form = forms.BookShowForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("book:book_list"))
+            # return HttpResponse("Book Created Succesfully")
+    else:
+        form = forms.BookShowForm()
+    return render(request, "add_book.html", {"form" : form})

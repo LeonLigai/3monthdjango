@@ -8,6 +8,8 @@ class book(models.Model):
     update_date = models.DateField(auto_now=True)
     author = models.CharField(max_length=48)
 
+def __str__(self):
+    return self.title
 
 class BookFeedBack(models.Model):
     text = models.TextField()
