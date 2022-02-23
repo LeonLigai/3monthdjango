@@ -35,7 +35,7 @@
 </style>
 <div class="container book__container">
     <div class="row gy-5">
-        {%for i in book%}
+        {%for i in object_list %}
         <div class="col-3">
             <div class="book__card">
                 <img src="{{ i.image.url }}" class="card-img-top book__img" alt="...">
