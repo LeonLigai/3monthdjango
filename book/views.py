@@ -30,3 +30,21 @@ def add_book(request):
     else:
         form = forms.BookShowForm()
     return render(request, "add_book.html", {"form" : form})
+
+def put_book_update(request, id):
+    book_id = get_object_or_404(models.book, id=id)
+    if request.method == "POST":
+        form = forms.BookShowForm(instance=book_id,
+                                  data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("book:book_list"))
+    else:
+        form = forms.BookShowForm(instance=book_id)
+    return render(request, "book_update.html", {"form": form,
+                                                "book_book": book_id})
+
+def book_delete(request, id):
+    book_id = get_object_or_404(models.book, id=id)
+    book_id.delete()
+    return redirect(reverse("book:book_list"))
