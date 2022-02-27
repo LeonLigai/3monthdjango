@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Films</title>
+</head>
+<body>
+<div>
+    <ul>
+        {% for i in object.list %}
+        <li>
+            <h2>{{ i.title }}</h2>
+                <img src="{{ i.image.url }}" alt="">
+<!--            <link rel="stylesheet" href="{{ i.image.url }}">-->
+        </li>
+    </ul>
+</div>
+</body>
+</html>
